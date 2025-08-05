@@ -47,7 +47,9 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
 def get_sales_data():
     """
-    get sales figures input from user
+    get sales figures input from user.
+    Run as long as user doesn't provide 6 values that can be
+    converted as integers
     """
     while True:     # as long as it is "true" run
         print("Please enter sales data from the last market")
@@ -71,7 +73,8 @@ def get_sales_data():
 
         if validate_data(sales_data):       # run the "validate_data" func
             print("Data is valid!")     # print statement
-            break       # break out of the "while" loop
+            #  break       # break out of the "while" loop
+            return sales_data
 
 
 def validate_data(values):
@@ -98,4 +101,16 @@ def validate_data(values):
     print(values)
 
 
-get_sales_data()
+def update_sales_worksheet(data):
+    """
+    update sales worksheet, add new row with the list data provided.
+    """
+    print("Updating sales worksheet... \n")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(data)
+    print("Sales worksheet updated successfully. \n")
+
+
+data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
