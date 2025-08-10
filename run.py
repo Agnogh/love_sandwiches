@@ -125,7 +125,16 @@ def calculate_surplus_data(sales_row):
     stock = SHEET.worksheet("stock").get_all_values()
     # pprint(stock)
     stock_row = stock[-1]
-    print(stock_row)
+    # print(f'stoc row: {stock_row}')
+    # print(f'sales wor: {sales_row}')
+
+    surplus_data = []
+    # we are going through sales and stock rown
+    for stock, sales in zip(stock_row, sales_row):
+        # then caluclate surplus by substracting sales form stock
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+    return surplus_data
 
 
 def main():
@@ -136,7 +145,9 @@ def main():
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
     # calling the function "calculate_surplus_data" with sales_data variable
-    calculate_surplus_data(sales_data)
+    # calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
 
 
 print("Welcome to Love sandiches data automation")
