@@ -59,7 +59,7 @@ def get_sales_data():
 
     # data_str is assigned value to wahatever user adds after
     # the text "Enter your..."
-        data_str = input("Enter your Data here: ")
+        data_str = input("Enter your Data here: \n")
 
     # sales_data is assigned value previously assigned "data_str" but it
     # is seperated by comma (,)
