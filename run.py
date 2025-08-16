@@ -4,12 +4,15 @@
 import gspread
 from google.oauth2.service_account import Credentials
 # from pprint import pprint
+# import json
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
+
+# creds = json.load(open('creds.json'))
 
 # line below reads a special key file ("creds.json") and tellss Google
 # that this script has permission to access that sheet
@@ -213,10 +216,12 @@ def main():
     sales_colums = get_last_5_entry_sales()
     stock_data = calculate_stock_data(sales_colums)
     update_worksheet(stock_data, "stock")
+    # return stock_data
 
 
 print("Welcome to Love sandiches data automation")
 # calling out my main function
 main()
+# stock_data = main()
 
 # get_last_5_entry_sales()
